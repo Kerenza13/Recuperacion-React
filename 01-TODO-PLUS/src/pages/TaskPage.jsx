@@ -1,45 +1,29 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
+import TaskComponent from "../components/TaskComponent";
+import { useTask } from "../context/TaskContext";
 
 const HomePage = () => {
-  const [tasks, setTasks] = useState([]);
-  const API_URL = import.meta.env.VITE_URL_API;
-
-  const fetchTasks = async () => {
-    try {
-      const response = await fetch(`${API_URL}`);
-      if (!response.ok) throw new Error("Error al obtener las tareas");
-      const data = await response.json();
-      setTasks(data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  useEffect(() => {
-    fetchTasks();
-  }, []);
-
+  const { tasks } = useTask(); 
   const totalTasks = tasks.length;
   const completedTasks = tasks.filter((task) => task.checked).length;
 
-return (
+  return (
     <div>
-      <h1>Lista de Tareas</h1>
-      <Link to="/create">Crear Tarea</Link>
+      <h1>Task List</h1>
+      <Link to="/create">Create Task</Link>
       <div>
-        <h2>Contador</h2>
+        <h2>Counter</h2>
         <p>
-          Completadas: {completedTasks} / Total: {totalTasks}
+          Completed: {completedTasks} / Total: {totalTasks}
         </p>
       </div>
       <div>
-        {tasks.map((task) => (
-          <div key={task.id}>
-            <h3>{task.name}</h3>
-            <p>{task.description}</p>
-          </div>
-        ))}
+        {tasks.length > 0 ? (
+          tasks.map((task) => <TaskComponent key={task.id} task={task} />)
+        ) : (
+          <p>No tasks available</p>
+        )}
       </div>
     </div>
   );

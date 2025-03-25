@@ -1,7 +1,7 @@
 # Enunciado
 
 Crear una página de inicio (*home*) que muestre:  
-- Una lista de tareas.  
+- Una lista de tareas con todas las tareas existentes.  
 - Un contador con la cantidad de tareas completadas y el total de tareas.  
 
 En la página de inicio, habrá enlaces (*href*) para ir a la página de creación de tareas (*Create Task*).  
