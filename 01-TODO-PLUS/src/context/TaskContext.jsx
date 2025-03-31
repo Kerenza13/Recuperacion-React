@@ -22,17 +22,17 @@ export const TaskProvider = ({ children }) => {
     fetchTasks();
   }, [API_URL]);
 
-  const addTask = async (name, description) => {
-    if (tasks.some((task) => task.name === name)) {
+  const addTask = async (title, description) => {
+    if (tasks.some((task) => task.title === title)) {
       return "Error: La tarea ya existe";
     }
     const newId =
       tasks.length > 0 ? Math.max(...tasks.map((t) => t.id)) + 1 : 1;
     const newTask = {
       id: newId,
-      name,
+      title,
       description,
-      checked: false,
+      completed: false,
     };
 
     try {
@@ -42,7 +42,8 @@ export const TaskProvider = ({ children }) => {
         body: JSON.stringify(newTask),
       });
       if (!response.ok) throw new Error("Error al guardar la tarea");
-      setTasks([...tasks, newTask]);
+      const savedTask = await response.json();
+      setTasks([...tasks, savedTask]);
     } catch (error) {
       console.error(error);
     }
@@ -51,7 +52,7 @@ export const TaskProvider = ({ children }) => {
   const toggleTask = (id) => {
     setTasks(
       tasks.map((task) =>
-        task.id === id ? { ...task, checked: !task.checked } : task
+        task.id === id ? { ...task, completed: !task.completed } : task
       )
     );
   };
