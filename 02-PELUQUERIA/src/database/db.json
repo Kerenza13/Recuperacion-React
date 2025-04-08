@@ -1,0 +1,58 @@
+{
+    "services": [
+      {
+        "id": 1,
+        "name": "Corte de pelo",
+        "price": 15.00,
+        "duration": 30
+      },
+      {
+        "id": 2,
+        "name": "Tinte",
+        "price": 25.00,
+        "duration": 60
+      },
+      {
+        "id": 3,
+        "name": "barba",
+        "price": 20.00,
+        "duration": 45
+      },
+      {
+        "id": 4,
+        "name": "Peinado",
+        "price": 10.00,
+        "duration": 60
+      }
+    ],
+    "appointments": [
+      {
+        "id": 1,
+        "serviceId": 1,
+        "userId": 1,
+        "date": "2023-10-01T10:00:00Z",
+        "status": "confirmed"
+      },
+      {
+        "id": 2,
+        "serviceId": 2,
+        "userId": 2,
+        "date": "2023-10-02T11:00:00Z",
+        "status": "pending"
+      }
+    ],
+
+    "users": [
+      {
+        "id": 1,
+        "email": "user1@example.com",
+        "password": "password123"
+      },
+      {
+        "id": 2,
+        "email": "user2@example.com",
+        "password": "password456"
+      }
+    ]
+  }
+  

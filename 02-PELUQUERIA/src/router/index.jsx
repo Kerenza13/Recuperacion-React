@@ -3,8 +3,7 @@ import RootLayout from "../layouts/RootLayout";
 import HomePage from "../pages/HomePage";
 import ServicesPage from "../pages/ServicesPage";
 import ProductsPage from "../pages/ProductsPage";
-import RegisterPage from "../pages/RegisterPage";
-import LoginPage from "../pages/LoginPage";
+import AuthPage from "../pages/AuthPage";
 import BookingPage from "../pages/BookingPage";
 import ProfilePage from "../pages/ProfilePage";
 
@@ -16,8 +15,7 @@ export const router = createBrowserRouter([
       { index: true, element: <HomePage /> },
       { path: "servicios", element: <ServicesPage /> },
       { path: "productos", element: <ProductsPage /> },
-      { path: "registro", element: <RegisterPage /> },
-      { path: "login", element: <LoginPage /> },
+      { path: "auth", element: <AuthPage /> },
       { path: "reserva", element: <BookingPage /> },
       { path: "perfil", element: <ProfilePage /> },
     ],
