@@ -17,10 +17,15 @@ const ProfilePage = () => {
             Authorization: `Bearer ${token}`,
           },
         });
+
+        if (!response.ok) {
+          throw new Error("Error al cargar tus citas.");
+        }
+
         const data = await response.json();
         setAppointments(data);
       } catch (err) {
-        setError("Error al cargar tus citas.");
+        setError(err.message || "Error al cargar tus citas.");
       } finally {
         setLoading(false);
       }
@@ -29,7 +34,7 @@ const ProfilePage = () => {
     if (user?.id) {
       fetchAppointments();
     }
-  }, [user, token]);
+  }, [user, token, API_URL]);
 
   return (
     <div className="p-6 max-w-xl mx-auto">
@@ -53,9 +58,17 @@ const ProfilePage = () => {
         <ul className="space-y-4">
           {appointments.map((appt) => (
             <li key={appt.id} className="border p-4 rounded shadow">
-              <p><strong>Servicio ID:</strong> {appt.serviceId}</p>
-              <p><strong>Fecha:</strong> {new Date(appt.date).toLocaleString()}</p>
-              <p><strong>Estado:</strong> {appt.status}</p>
+              <p>
+                <strong>Servicio:</strong> {appt.services.map((serviceId) => {
+                  return <span key={serviceId}>{serviceId}</span>;
+                })}
+              </p>
+              <p>
+                <strong>Fecha:</strong> {new Date(appt.date).toLocaleString()}
+              </p>
+              <p>
+                <strong>Estado:</strong> {appt.status}
+              </p>
             </li>
           ))}
         </ul>

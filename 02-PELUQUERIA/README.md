@@ -56,6 +56,3 @@ Aplicación web moderna para una empresa de peluquería que muestra servicios, p
 - **AuthContext**: Maneja el login, logout, usuario actual y token.
 - **CitaContext**: Administra la selección de servicios para la cita.
 - **HorarioContext (opcional)**: Controla la lógica de disponibilidad por horas.
-
-## Tecnologías Utilizadas
-- **Frontend:** React (Vite)

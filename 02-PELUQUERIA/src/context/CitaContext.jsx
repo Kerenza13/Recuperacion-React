@@ -1,25 +1,25 @@
 import React, { createContext, useContext, useState } from "react";
 
-// Crear el contexto
 const CitaContext = createContext();
 
-// Proveedor del contexto
 export const CitaProvider = ({ children }) => {
   const [selectedServices, setSelectedServices] = useState([]);
 
-  // Función para añadir un servicio al carrito
   const addService = (service) => {
-    setSelectedServices((prevServices) => [...prevServices, service]);
+    setSelectedServices((prevServices) => {
+      if (prevServices.some((s) => s.id === service.id)) {
+        return prevServices;
+      }
+      return [...prevServices, service];
+    });
   };
 
-  // Función para eliminar un servicio del carrito
   const removeService = (serviceId) => {
     setSelectedServices((prevServices) =>
       prevServices.filter((service) => service.id !== serviceId)
     );
   };
 
-  // Función para limpiar todos los servicios seleccionados
   const clearServices = () => {
     setSelectedServices([]);
   };
@@ -38,7 +38,6 @@ export const CitaProvider = ({ children }) => {
   );
 };
 
-// Hook personalizado para usar el contexto
 export const useCita = () => {
   return useContext(CitaContext);
 };

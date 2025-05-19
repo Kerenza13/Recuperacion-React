@@ -16,8 +16,10 @@ export const router = createBrowserRouter([
       { path: "servicios", element: <ServicesPage /> },
       { path: "productos", element: <ProductsPage /> },
       { path: "auth", element: <AuthPage /> },
-      { path: "reserva", element: <BookingPage /> },
+      { path: "reservar", element: <BookingPage /> },
       { path: "perfil", element: <ProfilePage /> },
     ],
   },
 ]);
+
+export default router;

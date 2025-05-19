@@ -12,13 +12,19 @@ const AuthPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (isRegister) {
-      await register(email, password);
-    } else {
-      const success = await login(email, password);
-      if (success === true) {
-        navigate("/perfil");
+    try {
+      if (isRegister) {
+        await register(email, password);
+        alert("Registro exitoso. Ahora puedes iniciar sesión.");
+        setIsRegister(false); 
+      } else {
+        const success = await login(email, password);
+        if (success === true) {
+          navigate("/perfil");
+        }
       }
+    } catch (err) {
+      console.error("Error en la autenticación:", err.message);
     }
   };
 
@@ -48,7 +54,11 @@ const AuthPage = () => {
         <button
           type="submit"
           disabled={loading}
-          className="w-full bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
+          className={`w-full px-4 py-2 rounded transition ${
+            loading
+              ? "bg-gray-400 cursor-not-allowed"
+              : "bg-blue-500 text-white hover:bg-blue-600"
+          }`}
         >
           {loading ? "Procesando..." : isRegister ? "Registrar" : "Ingresar"}
         </button>
