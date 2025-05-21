@@ -11,8 +11,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@tailwindcss/vite": "^4.1.7",
     "bcryptjs": "^3.0.2",
+=======
+>>>>>>> e9ff18edc3e3977c4bb24746c3cb290c98800849
     "json-server": "^1.0.0-beta.3",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
