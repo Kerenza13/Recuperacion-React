@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }) => {
     setLoading(true);
     setError(null);
     try {
-      const response = await fetch(`${API_URL}/users`, {
+      const response = await fetch(`${API_URL}users`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -43,7 +43,7 @@ export const AuthProvider = ({ children }) => {
     setError(null);
     try {
       const response = await fetch(
-        `${API_URL}/users?email=${email}&password=${password}`
+        `${API_URL}users?email=${email}&password=${password}`
       );
       const data = await response.json();
 

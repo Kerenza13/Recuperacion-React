@@ -12,7 +12,7 @@ const ServicesPage = () => {
   useEffect(() => {
     const fetchServices = async () => {
       try {
-        const response = await fetch(`${API_URL}/services`);
+        const response = await fetch(`${API_URL}services`);
         if (!response.ok) {
           throw new Error("Error al cargar los servicios");
         }
@@ -47,9 +47,15 @@ const ServicesPage = () => {
               className="border p-4 rounded-lg shadow hover:shadow-md transition"
             >
               <h3 className="text-xl font-semibold mb-2">{service.name}</h3>
-              <p>Precio: ${service.price.toFixed(2)}</p>
+              <p>Precio: ${Number(service.price).toFixed(2)}</p>
               <p>Duración: {service.duration} minutos</p>
-              <p>Categoría: {service.category}</p>
+              <p>
+                Categoría:{" "}
+                {service.category
+                  ? service.category.charAt(0).toUpperCase() +
+                    service.category.slice(1)
+                  : "N/A"}
+              </p>
               <button
                 onClick={() => addService(service)}
                 className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition"
