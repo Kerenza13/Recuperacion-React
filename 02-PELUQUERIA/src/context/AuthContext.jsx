@@ -9,12 +9,9 @@ export const AuthProvider = ({ children }) => {
   const [error, setError] = useState(null);
 
   const API_URL = import.meta.env.VITE_URL_API;
+
   useEffect(() => {
-    if (token) {
-      setIsAuthenticated(true);
-    } else {
-      setIsAuthenticated(false);
-    }
+    setIsAuthenticated(!!token);
   }, [token]);
 
   const register = async (email, password) => {
@@ -40,31 +37,29 @@ export const AuthProvider = ({ children }) => {
       setLoading(false);
     }
   };
+
   const login = async (email, password) => {
     setLoading(true);
     setError(null);
     try {
-      const response = await fetch(`${API_URL}/users`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
-
+      const response = await fetch(
+        `${API_URL}/users?email=${email}&password=${password}`
+      );
       const data = await response.json();
 
-      if (!response.ok) {
-        throw new Error(data.message || "Credenciales inválidas");
+      if (!response.ok || data.length === 0) {
+        throw new Error("Credenciales inválidas");
       }
 
-      localStorage.setItem("token", data.token);
-      setToken(data.token);
+      const user = data[0]; // solo esperamos uno
+
+      localStorage.setItem("token", user.id); // simulamos token con el id del usuario
+      setToken(user.id);
       setIsAuthenticated(true);
       return true;
     } catch (error) {
       setError(error.message);
-      return error.message;
+      return false;
     } finally {
       setLoading(false);
     }
