@@ -11,7 +11,7 @@ export function RecetaDetalleProvider({ children }) {
     setLoading(true);
     setError(null);
     try {
-      const response = await fetch(`${import.meta.env.VITE_URL_API}/recetas/${id}`);
+      const response = await fetch(`${import.meta.env.VITE_URL_API}recetas/${id}`);
       if (!response.ok) {
         throw new Error("Receta no encontrada");
       }

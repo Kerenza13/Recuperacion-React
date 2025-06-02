@@ -14,7 +14,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (username, password) => {
     try {
-      const response = await fetch(`${API_URL}/usuarios`);
+      const response = await fetch(`${API_URL}usuarios`);
       const usuarios = await response.json();
       const foundUser = usuarios.find((u) => u.username === username);
 
@@ -35,7 +35,7 @@ export const AuthProvider = ({ children }) => {
   const register = async (username, password) => {
     try {
       // Verificar que no exista usuario igual
-      const res = await fetch(`${API_URL}/usuarios?username=${username}`);
+      const res = await fetch(`${API_URL}usuarios?username=${username}`);
       const existingUsers = await res.json();
       if (existingUsers.length > 0) {
         return { success: false, message: "El nombre de usuario ya existe" };
@@ -50,7 +50,7 @@ export const AuthProvider = ({ children }) => {
         favoritas: []
       };
 
-      const response = await fetch(`${API_URL}/usuarios`, {
+      const response = await fetch(`${API_URL}usuarios`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newUser),

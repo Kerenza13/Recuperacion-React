@@ -9,21 +9,25 @@ function Favoritas() {
 
   useEffect(() => {
     if (user) {
-      fetch(`${API_URL}/recetas`)
+      fetch(`${API_URL}recetas`)
         .then((res) => res.json())
         .then((data) =>
           setFavoritas(data.filter((receta) => user.favoritas.includes(receta.id)))
-        );
+        )
+        .catch((err) => console.error("Error loading favorites:", err));
     }
   }, [user]);
 
   return (
     <div className="p-4">
-      <h1 className="text-2xl">Mis Recetas Favoritas</h1>
+      <h1 className="text-2xl font-bold">⭐ Mis Recetas Favoritas</h1>
       {favoritas.length > 0 ? (
         <ul>
           {favoritas.map((receta) => (
-            <li key={receta.id}>{receta.titulo}</li>
+            <li key={receta.id} className="mb-2">
+              <h2 className="font-bold">{receta.titulo}</h2>
+              <p>Dificultad: {receta.dificultad}</p>
+            </li>
           ))}
         </ul>
       ) : (

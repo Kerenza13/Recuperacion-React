@@ -1,7 +1,7 @@
 {
   "usuarios": [
     {
-      "id": 1,
+      "id": "1",
       "username": "ana",
       "password": "contraseñaEncriptada",
       "favoritas": [
@@ -13,11 +13,17 @@
       "username": "carlos",
       "password": "$2b$10$8Bx1BHqnoMNzPyyhQo9D4uFQzO65LQZ8dpRzCegPXX2RvIfyLh07u",
       "favoritas": []
+    },
+    {
+      "id": "8dd8",
+      "username": "cmd@gmail.com",
+      "password": "$2b$10$moM3SMjD.3X3QfTYijghqeqep3Df5c4RkxELOgEk03j3pZ5415Mlu",
+      "favoritas": []
     }
   ],
   "recetas": [
     {
-      "id": 1,
+      "id": "1",
       "titulo": "Tortilla de patatas",
       "ingredientes": [
         "Huevos",
